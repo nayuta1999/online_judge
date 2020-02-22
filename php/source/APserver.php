@@ -24,7 +24,7 @@
             if (socket_listen($sock) === false) {
                 throw new \Exception("socket_listen() failed: ".socket_strerror(socket_last_error($sock)));
             }
-            var_dump("サーバー起動\n");
+            //var_dump("サーバー起動\n");
             return $sock;
         }
         /*

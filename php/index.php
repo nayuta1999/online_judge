@@ -8,9 +8,10 @@ if (socket_connect($sock, '172.40.2.2', 5000) === false) {
     die("socket_connect() failed: ".socket_strerror(socket_last_error()));
 }
 
-$buf = "#include <stdio.h>\nint main(void){printf(\"Helloworld\");return 0;}";
-socket_write($sock, $buf, strlen($buf));
-echo socket_read($sock, 1024);
+//$buf = "#include <stdio.h>\nint main(void){printf(\"Helloworld\");return 0;}";
+$buf = file_get_contents("sample.c");
+socket_write($sock, $buf);
+echo socket_read($sock,1024);
 /*
 $buf = "bar\n";
 socket_write($sock, $buf, strlen($buf));

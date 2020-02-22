@@ -2,11 +2,11 @@
     require_once('./source/APserver.php');
     $server = new APserver();
     $server -> run(function($remote, $line, $sock){
-        $i = file_put_contents("./test.c",$line,FILE_APPEND);
+        $file_string = substr($line,strpos($line,"#"),strlen($line));
+        $i = file_put_contents("./test.c",$file_string,FILE_APPEND);
         system("gcc test.c");
         $return_var = system("./a.out");
-        var_dump($return_var);
-        if($return_var === "Helloworld"){
+        if(strcmp($return_var,"Hello world\n")){
             socket_write($remote,"AC");
         }
         else{
